@@ -1,0 +1,62 @@
+//
+//  ViewController.swift
+//  workshop1
+//
+//  Created by Billy Farroll on 08/10/2015.
+//  Copyright © 2015 Billy Farroll. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController, PersonDelegate, UITextFieldDelegate {
+
+   
+    @IBAction func Slide(sender: AnyObject) {
+       
+        
+    }
+    
+    @IBOutlet weak var myText: UITextField!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let me = Person(name: "Billy", age: 21 )
+        me.haveBirthday()
+        me.delegate = self
+        print(me.age)
+        
+        
+        let someoneElse = Person(name: "Kate", age: 35 )
+        someoneElse.haveBirthday()
+        someoneElse.delegate = self
+        print(someoneElse.age)
+        
+        
+}
+    
+    func someoneHadBirthday(person: Person) {
+        print("\(person.name) had a birthday, they are \(person.age)")
+    
+       
+        }
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        print("Someone started typing")
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder() 
+        
+        
+        let newPerson = Person(name: myText.text!, age: 0)
+        print(newPerson.name)
+        newPerson.haveBirthday()
+        
+        return true
+    }
+    
+}
+
